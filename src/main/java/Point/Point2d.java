@@ -111,6 +111,6 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d clone() {
-        return new Point2d(this.X(), this.Y());
+        return new Point2d(this.vector);
     }
 }

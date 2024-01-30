@@ -9,9 +9,11 @@ public class Ellipse extends BaseShape {
      * Create a filled Ellipse that is centered on (0, 0)
      * @param widthDiameter Width of the Ellipse
      * @param heightDiameter Height of the Ellipse
+     *                       The equation is : x/a pow 2 +
      */
     public Ellipse(Double widthDiameter, Double heightDiameter) {
-
+        Double a = widthDiameter/2;
+        Double b = heightDiameter/2;
     }
 
     /** TODO

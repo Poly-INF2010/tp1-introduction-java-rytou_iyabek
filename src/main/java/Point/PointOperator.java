@@ -68,3 +68,6 @@ public final class PointOperator {
         }
     }
 }
+
+
+// [{0, 1} ; {1, 1} ; {4, 5}]        {1,5
