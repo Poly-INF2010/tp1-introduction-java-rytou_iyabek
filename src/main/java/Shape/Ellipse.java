@@ -14,14 +14,20 @@ public class Ellipse extends BaseShape {
     public Ellipse(Double widthDiameter, Double heightDiameter) {
         Double a = widthDiameter/2;
         Double b = heightDiameter/2;
+        for (double i = -a; i <= a; i += 0.5) {
+            for (double j = -b; j <= b; j += 0.5) {
+                if (Math.pow(i/a, 2) + Math.pow(j/b, 2) <= 1) {
+                    this.add(new Point2d(i,j));
+                }
+            }
+        }
     }
-
     /** TODO
      * Create a filled Ellipse that is centered on (0,0)
      * @param dimensions 2D point containing the width and height of the Ellipse
      */
     public Ellipse(Point2d dimensions) {
-
+        this(dimensions.X(), dimensions.Y());
     }
 
     /**
@@ -29,7 +35,7 @@ public class Ellipse extends BaseShape {
      * @param coords Collection of 2D points
      */
     private Ellipse(Collection<Point2d> coords) {
-
+        super(coords);
     }
 
     /** TODO
@@ -37,6 +43,6 @@ public class Ellipse extends BaseShape {
      */
     @Override
     public Ellipse clone() {
-        return null;
+        return new Ellipse(getCoords());
     }
 }
