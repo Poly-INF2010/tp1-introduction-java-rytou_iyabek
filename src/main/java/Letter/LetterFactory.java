@@ -17,8 +17,28 @@ public final class LetterFactory {
      * @return BaseShape containing the letter A
      */
     public static BaseShape create_A()  {
-        return null;
+        BaseShape shape = new BaseShape();
+
+        Rectangle line1 = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle line2 = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle line3 = new Rectangle(stripeThickness,halfStripeThickness);
+
+        Point2d point1 = new Point2d(-15.0,0.0);
+        Point2d point2 = new Point2d(15.0,0.0);
+        Point2d point3 = new Point2d(0.0,0.0);
+        double angle1 = Math.toRadians(8);
+        double angle2 = Math.toRadians(-8);
+
+        line1.translate(line1.getCoords(), point1);
+        line1.rotate(line1.getCoords(), angle1);
+        line2.translate(line2.getCoords(), point2);
+        line2.rotate(line2.getCoords(), angle2);
+        line3.translate(line3.getCoords(), point3);
+        shape = line1.add(line2).add(line3);
+
+        return shape;
     }
+
 
     /** TODO
      * Create the letter B graphically
@@ -33,7 +53,15 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        return null;
+        Ellipse el1 = new Ellipse(maxWidth, maxHeight);
+        Ellipse el2 = new Ellipse(maxWidth,halfMaxHeight);
+
+        Point2d point1 = new Point2d(-15.0,0.0);
+        Point2d point2 = new Point2d(4.0,0.0);
+
+        el1.translate(el1.getCoords(), point1);
+        el2.translate(el2.getCoords(), point2);
+        return el1.remove(el2);
     }
 
     /** TODO
@@ -71,7 +99,20 @@ public final class LetterFactory {
      * @return BaseShape containing the letter H
      */
     public static BaseShape create_H() {
-        return null;
+        BaseShape shape = new BaseShape();
+        Rectangle rectangle1 = new Rectangle(stripeThickness,maxHeight);
+        Rectangle rectangle2 = new Rectangle(stripeThickness,maxHeight);
+        Rectangle rectangle3 = new Rectangle(stripeThickness,stripeThickness);
+
+        Point2d point1 = new Point2d(-20.0,0.0);
+        Point2d point2 = new Point2d(20.0,0.0);
+        Point2d point3 = new Point2d(0.0,0.0);
+
+        rectangle1.translate(rectangle1.getCoords(), point1);
+        rectangle2.translate(rectangle2.getCoords(), point2);
+        rectangle3.translate(rectangle3.getCoords(), point3);
+        shape = rectangle1.add(rectangle2).add(rectangle3);
+        return shape;
     }
 
     /** TODO
