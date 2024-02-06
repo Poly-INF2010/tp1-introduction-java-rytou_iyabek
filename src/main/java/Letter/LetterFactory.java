@@ -2,6 +2,9 @@ package Letter;
 
 import Point.Point2d;
 import Shape.*;
+import Shape.Rectangle;
+
+import java.awt.*;
 
 public final class LetterFactory {
     final static Double maxHeight = 150.0;
@@ -45,7 +48,15 @@ public final class LetterFactory {
      * @return BaseShape containing the letter B
      */
     public static BaseShape create_B() {
-        return null;
+        Rectangle rectangle = new Rectangle(stripeThickness , maxHeight);
+        Circle circle = new Circle(halfMaxHeight);
+        rectangle.translate(rectangle.getCoords(), new Point2d(7.0, -0.2));
+        circle.remove(new Circle(maxWidth));
+        circle.translate(circle.getCoords(), new Point2d(38.0, -40.0));
+        rectangle.add(circle);
+        circle.translate(circle.getCoords(), new Point2d(0.0, 75.0));
+        rectangle.add(circle);
+        return rectangle;
     }
 
     /** TODO
@@ -54,14 +65,12 @@ public final class LetterFactory {
      */
     public static BaseShape create_C() {
         Ellipse el1 = new Ellipse(maxWidth, maxHeight);
-        Ellipse el2 = new Ellipse(maxWidth,halfMaxHeight);
+        el1.remove(new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness));
+        Rectangle rectangle = new Rectangle(maxWidth, maxHeight-2*stripeThickness);
+        rectangle.translate(rectangle.getCoords(), new Point2d(halfMaxWidth, 0.0));
+        el1.remove(rectangle);
+        return el1;
 
-        Point2d point1 = new Point2d(-15.0,0.0);
-        Point2d point2 = new Point2d(4.0,0.0);
-
-        el1.translate(el1.getCoords(), point1);
-        el2.translate(el2.getCoords(), point2);
-        return el1.remove(el2);
     }
 
     /** TODO
@@ -69,8 +78,8 @@ public final class LetterFactory {
      * @return BaseShape containing the letter E
      */
     public static BaseShape create_E() {
-        Rectangle left = new Rectangle(halfStripeThickness - 3,maxHeight);
-        Rectangle up = new Rectangle(halfStripeThickness - 3, halfMaxHeight);
+        Rectangle left = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle up = new Rectangle(halfStripeThickness, halfMaxWidth + 20);
         Rectangle middle = up.clone();
         Rectangle down = up.clone();
 
@@ -79,9 +88,9 @@ public final class LetterFactory {
         middle.rotate(middle.getCoords(), -Math.PI/2);
         down.rotate(down.getCoords(), -Math.PI/2);
 
-        left.translate(left.getCoords(), new Point2d(-halfMaxWidth-4, 0.0));
-        up.translate(up.getCoords(), new Point2d(0.0, -halfMaxHeight));
-        down.translate(down.getCoords(), new Point2d(0.0, halfMaxHeight));
+        left.translate(left.getCoords(), new Point2d(-halfMaxWidth-4, halfStripeThickness + 2.0));
+        up.translate(up.getCoords(), new Point2d(0.0, -(halfMaxHeight - halfStripeThickness - 6)));
+        down.translate(down.getCoords(), new Point2d(0.0, halfMaxHeight - halfStripeThickness + 16));
 
 
         left.add(up);
